@@ -25,16 +25,18 @@ const userSchema = new Schema({
     type: String
   },
   adress: {
-    required: true,
-    type: String
-  },
-  zipcode: {
-    required: true,
-    type: String
-  },
-  city: {
-    required: true,
-    type: String
+    adresse: {
+      required: true,
+      type: String
+    },
+    zipcode: {
+      required: true,
+      type: String
+    },
+    city: {
+      required: true,
+      type: String
+    }
   },
   age: {
     type: Number
