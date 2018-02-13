@@ -41,11 +41,13 @@ const userSchema = new Schema({
   age: {
     type: Number
   },
-  category: {
-    required: true,
-    enum: SKILLS,
-    type: String
-  },
+  category: [
+    {
+      required: true,
+      enum: SKILLS,
+      type: String
+    }
+  ],
   role: {
     required: true,
     enum: ["coach", "candidate"],
