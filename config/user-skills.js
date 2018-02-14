@@ -11,7 +11,7 @@ module.exports = [
   "Suite Office",
   "Bâtiment",
   "Sécurité",
-  "Reconversion professionnel",
+  "Reconversion professionnelle",
   "Petite enfance",
   "Enseignement",
   "Cuisine",
