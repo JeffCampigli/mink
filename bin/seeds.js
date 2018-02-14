@@ -10,6 +10,7 @@ const users = [
     email: "test1@test.com",
     firstname: "toto",
     lastname: "zero",
+    telephone: "0143057208",
     adress: {
       adresse: "2 rue test",
       zipcode: "93160",
@@ -26,6 +27,7 @@ const users = [
     email: "test2@test.com",
     firstname: "toto",
     lastname: "zero",
+    telephone: "0143057208",
     adress: {
       adresse: "2 rue test",
       zipcode: "93160",
@@ -42,6 +44,7 @@ const users = [
     email: "test3@test.com",
     firstname: "toto",
     lastname: "zero",
+    telephone: "0143057208",
     adress: {
       adresse: "2 rue test",
       zipcode: "93160",
@@ -58,6 +61,7 @@ const users = [
     email: "test4@test.com",
     firstname: "toto",
     lastname: "zero",
+    telephone: "0143057208",
     adress: {
       adresse: "2 rue test",
       zipcode: "93160",
@@ -74,6 +78,7 @@ const users = [
     email: "test5@test.com",
     firstname: "toto",
     lastname: "zero",
+    telephone: "0143057208",
     adress: {
       adresse: "2 rue test",
       zipcode: "93160",
@@ -90,6 +95,7 @@ const users = [
     email: "candidat1@test.com",
     firstname: "toto",
     lastname: "zero",
+    telephone: "0143057208",
     adress: {
       adresse: "2 rue test",
       zipcode: "93160",
@@ -106,6 +112,7 @@ const users = [
     email: "candidat2@test.com",
     firstname: "toto",
     lastname: "zero",
+    telephone: "0143057208",
     adress: {
       adresse: "2 rue test",
       zipcode: "93160",
@@ -122,6 +129,7 @@ const users = [
     email: "candidat3@test.com",
     firstname: "toto",
     lastname: "zero",
+    telephone: "0143057208",
     adress: {
       adresse: "2 rue test",
       zipcode: "93160",
@@ -138,6 +146,7 @@ const users = [
     email: "candidat4@test.com",
     firstname: "toto",
     lastname: "zero",
+    telephone: "0143057208",
     adress: {
       adresse: "2 rue test",
       zipcode: "93160",
@@ -154,6 +163,7 @@ const users = [
     email: "candidat5@test.com",
     firstname: "toto",
     lastname: "zero",
+    telephone: "0143057208",
     adress: {
       adresse: "2 rue test",
       zipcode: "93160",

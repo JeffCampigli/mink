@@ -1,60 +1,131 @@
-<form method="POST" action="/signup">
-<label>
-  Username:
-  <input type="text" name="username">
-</label>
-<br>
-<label>
-  Nom:
-  <input type="text" name="firstname">
-</label>
-<br>
-<label>
-  Prénom:
-  <input type="text" name="lastname">
-</label>
-<br>
-<label>
-  age:
-  <input type="number" name="age">
-</label>
-<br>
-<label>
-  adresse:
-  <input type="text" name="adress">
-</label>
-<br>
-<label>
-  Code postal:
-  <input type="text" name="zipcode">
-</label>
-<br>
-<label>
-  Ville:
-  <input type="text" name="city">
-</label>
-<br>
-
-<div class="input-group mb-3">
-  <div class="input-group-prepend">
-    <div class="input-group-text">
-    <label>
-  Categorie(s):
-      <input type="checkbox" aria-label="Checkbox for following text input">
+<h1>
+  <%= title %>
+</h1>
+<div class="container">
+  <form action="/signup" method="POST">
+    <div class="form-group">
+      <label for="role">Sélectionner votre rôle</label>
+      <select class="form-control" name="role" id="role">
+        <option>Coach</option>
+        <option>Candidat</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="username">Username</label>
+      <input type="text" class="form-control" name="username" placeholder="Username">
+    </div>
+    <div class="form-group">
+      <label for="exampleInputPassword1">Mot de passe</label>
+      <input type="password" class="form-control" name="password" placeholder="">
+    </div>
+    <div class="form-group">
+      <label for="firstname">Nom</label>
+      <input type="text" class="form-control" name="firstname" placeholder="">
+    </div>
+    <div class="form-group">
+      <label for="lastname">Prénom</label>
+      <input type="text" class="form-control" name="lastname" placeholder="">
+    </div>
+    <div class="form-group">
+      <label for="telephone">Téléphone</label>
+      <input type="text" class="form-control" name="telephone" placeholder="">
+    </div>
+    <div class="form-group">
+      <label for="age">Age</label>
+      <input type="number" class="form-control" name="age" placeholder="">
+    </div>
+    <div class="form-group">
+      <label for="adresse">Adresse</label>
+      <input type="text" class="form-control" name="adresse" placeholder="">
+    </div>
+    <div class="form-group">
+      <label for="zipcode">Code postal</label>
+      <input type="text" class="form-control" name="zipcode" placeholder="">
+    </div>
+    <div class="form-group">
+      <label for="city">Ville</label>
+      <input type="text" class="form-control" name="city" placeholder="">
+    </div>
+    <div class="form-group">
+    <label for="description">Description</label>
+    <input type="textarea" class="form-control" name="description" placeholder="">
+    </div>
+    
+    <div class="row">
+    <div class="col-md-3">
+      <label class="control-label">Competences</label>
     </div>
   </div>
-  <input type="text" class="form-control" name ="category" aria-label="Text input with checkbox" value="">
-  </label>
+  <div class="row">
+    <div class="col-md-3">
+      <div class="checkbox">
+        <input type="checkbox" name=[category] value="Anglais" id="1">Anglais
+      </div>
+      <div class="checkbox">
+        <input type="checkbox" name=[category] value="Faire un CV" id="1">Faire un CV
+      </div>
+      <div class="checkbox">
+        <input type="checkbox" name=[category] value="Faire une lettre de motivation" id="1">lettre de motivation
+      </div>
+      <div class="checkbox">
+        <input type="checkbox" name=[category] value="Se présenter" id="1">Se présenter
+      </div>
+      <div class="checkbox">
+        <input type="checkbox" name=[category] value="Parler en public" id="1">Parler en public
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="checkbox">
+        <input type="checkbox" name=[category] value="Informatique" id="1">informatique
+      </div>
+      <div class="checkbox">
+        <input type="checkbox" name=[category] value="Relation client" id="1">Relation client
+      </div>
+      <div class="checkbox">
+        <input type="checkbox" name=[category] value="Démarches administrative" id="1">Demarches administrative
+      </div>
+      <div class="checkbox">
+        <input type="checkbox" name=[category] value="Confiance en soi" id="1">Confiance en soi
+      </div>
+      <div class="checkbox">
+        <input type="checkbox" name=[category] value="Suite Office" id="1">Suite Office
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="checkbox">
+        <input type="checkbox" name=[category] value="Bâtiment" id="1">Bâtiment
+      </div>
+      <div class="checkbox">
+        <input type="checkbox" name=[category] value="Sécurité" id="1">Sécurité
+      </div>
+      <div class="checkbox">
+        <input type="checkbox" name=[category] value="Reconversion" id="1">Reconversion
+      </div>
+      <div class="checkbox">
+        <input type="checkbox" name=[category] value="Petite enfance" id="1">Petite enfance
+      </div>
+      <div class="checkbox">
+        <input type="checkbox" name=[category] value="Enseignement" id="1">Enseignement
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="checkbox">
+        <input type="checkbox" name=[category] value="Cuisine" id="1">Cuisine
+      </div>
+      <div class="checkbox">
+        <input type="checkbox" name=[category] value="Service bar" id="1">Service bar
+      </div>
+      <div class="checkbox">
+        <input type="checkbox" name=[category] value="Plomberie" id="1">Plomberie
+      </div>
+      <div class="checkbox">
+        <input type="checkbox" name=[category] value="Peinture" id="1">Peinture
+      </div>
+      <div class="checkbox">
+        <input type="checkbox" name=[category] value="Freelance" id="1">freelance
+      </div>
+    </div>    
+    
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
 </div>
-<br>
-<label>
-  Décrivez-vous:
-  <input type="textarea" name="description">
-</label>
-<br>
-<label>
-  Password:
-  <input type="password" name="password">
-</label>
-<button>Création du compte:</button>
-</form>

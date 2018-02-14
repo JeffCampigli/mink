@@ -1,8 +1,41 @@
 body {
-  padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
 a {
-  color: #00B7FF;
+  color: #00b7ff;
+}
+
+.imgHome {
+  background-image: url("../images/backgroundhome.jpeg");
+}
+
+.choiceBox {
+  padding: 5%;
+  text-align: center;
+  color: white;
+  height: 145px;
+  opacity: 0.8;
+  font-style: bold;
+}
+.choiceBox a {
+  text-decoration: none;
+  color: white;
+}
+
+.firstBox {
+  background-color: #f0802e;
+}
+.secondBox {
+  background-color: #85cae7;
+}
+.thirdBox {
+  background-color: #76c17c;
+}
+.title {
+  padding-bottom: 5%;
+}
+.explanationHome {
+  padding-top: 5%;
+  text-align: center;
 }

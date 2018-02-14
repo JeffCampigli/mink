@@ -1,0 +1,3 @@
+<% matched.forEach(candidate => { %>
+  <p><%= candidate.userCandidate.username %></p>
+<% }) %>
