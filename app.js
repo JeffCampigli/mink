@@ -11,6 +11,7 @@ const session = require("express-session");
 const MongoStore = require("connect-mongo")(session);
 const LocalStrategy = require("passport-local").Strategy;
 const User = require("./models/user");
+const Match = require("./models/match");
 const bcrypt = require("bcrypt");
 const flash = require("connect-flash");
 
@@ -102,7 +103,7 @@ passport.use(
               role,
               description
             });
-            console.log(newUser);
+            //console.log(newUser);
 
             newUser.save(err => {
               console.log(err);
@@ -118,6 +119,38 @@ passport.use(
                   req.flash("error", error.message);
                 });
                 return done(null, false);
+              }
+              //Create a match between coach and candidate
+              if (newUser.role === "candidat") {
+                User.find(
+                  { role: "coach", category: category },
+                  (err, coach) => {
+                    console.log(coach);
+                    if (err) return next(err);
+                    const matched = new Match({
+                      userCandidat: newUser,
+                      userCoach: coach.id
+                    });
+                    matched.save(err => {
+                      if (err) return next(err);
+                    });
+                  }
+                );
+              } else if (newUser.role === "coach") {
+                User.find(
+                  { role: "candidat", category: category },
+                  (err, candidat) => {
+                    console.log(candidat);
+                    if (err) return next(err);
+                    const matched = new Match({
+                      userCandidat: candidat,
+                      userCoach: newUser.id
+                    });
+                    matched.save(err => {
+                      if (err) return next(err);
+                    });
+                  }
+                );
               }
               done(err, newUser);
             });
@@ -184,34 +217,3 @@ app.use((err, req, res, next) => {
 });
 
 module.exports = app;
-
-//Create a match between coach and candidate
-// if (newUser.role === "candidate") {
-//   User.find(
-//     { role: "candidate", category: category },
-//     (err, candidate) => {
-//       if (err) return next(err);
-//       const matched = new matched({
-//         userCandidat: candidate._id,
-//         userCoach: coach._id
-//       });
-//       matched.save(err => {
-//         if (err) return next(err);
-//       });
-//     }
-//   );
-// } else {
-//   User.find(
-//     { role: "coach", category: category },
-//     (err, candidate) => {
-//       if (err) return next(err);
-//       const matched = new matched({
-//         userCandidat: candidate._id,
-//         userCoach: coach._id
-//       });
-//       matched.save(err => {
-//         if (err) return next(err);
-//       });
-//     }
-//   );
-// }
