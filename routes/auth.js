@@ -18,6 +18,10 @@ router.get("/login", ensureLoggedOut(), (req, res, next) => {
 router.post(
   "/signup",
   ensureLoggedOut(),
+  (req, res, next) => {
+    console.log("before passport");
+    next();
+  },
   passport.authenticate("local-signup", {
     successRedirect: "/",
     failureRedirect: "/signup",

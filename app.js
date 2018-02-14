@@ -4,16 +4,16 @@ const favicon = require("serve-favicon");
 const logger = require("morgan");
 const cookieParser = require("cookie-parser");
 const bodyParser = require("body-parser");
-const expressLayouts = require("express-ejs-layouts");
+const ejsLayout = require("express-ejs-layouts");
+const mongoose = require("mongoose");
 const passport = require("passport");
-const bcrypt = require("bcrypt");
 const session = require("express-session");
 const MongoStore = require("connect-mongo")(session);
 const LocalStrategy = require("passport-local").Strategy;
 const User = require("./models/user");
-const Match = require("./models/match");
+const bcrypt = require("bcrypt");
 const flash = require("connect-flash");
-const mongoose = require("mongoose");
+
 mongoose.connect("mongodb://localhost/mink-db");
 
 const app = express();
@@ -24,17 +24,16 @@ app.set("view engine", "ejs");
 app.set("layout", "layouts/main-layout");
 
 // uncomment after placing your favicon in /public
-//app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger("dev"));
-app.use(expressLayouts);
+//app.use(favicon(path.join(__dirname, "public", "favicon.ico")));
+app.use(ejsLayout);
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
-
 app.use(
   session({
-    secret: "ironfundingdev",
+    secret: "mink",
     resave: false,
     saveUninitialized: true,
     store: new MongoStore({ mongooseConnection: mongoose.connection })
@@ -60,33 +59,18 @@ passport.use(
       passReqToCallback: true,
       usernameField: "email"
     },
-    (
-      req,
-      email,
-      password,
-      username,
-      firstname,
-      lastname,
-      telephone,
-      adresse,
-      zipcode,
-      city,
-      age,
-      category,
-      role,
-      description,
-      done
-    ) => {
+    (req, email, password, done) => {
+      console.log("after");
       // To avoid race conditions
       process.nextTick(() => {
         // Destructure the body
         const {
+          username,
           email,
           password,
-          username,
+          telephone,
           firstname,
           lastname,
-          telephone,
           adresse,
           zipcode,
           city,
@@ -99,29 +83,28 @@ passport.use(
           if (err) return done(err);
           bcrypt.hash(password, salt, (err, hashedPass) => {
             if (err) return done(err);
-            console.log("Je suis juste apres le bcrypt");
             const newUser = new User({
               username,
               email,
               password: hashedPass,
+              telephone,
               firstname,
               lastname,
-              telephone,
               adress: {
-                adresse,
-                zipcode,
-                city
+                adresse: adresse,
+                zipcode: zipcode,
+                city: city
               },
+              zipcode,
+              city,
               age,
               category,
               role,
               description
             });
+            console.log(newUser);
 
             newUser.save(err => {
-              console.log(
-                "Je suis juste entrain d'etre enregistrer dans mongoDB"
-              );
               console.log(err);
               if (err && err.code === 11000) {
                 req.flash(
@@ -136,36 +119,6 @@ passport.use(
                 });
                 return done(null, false);
               }
-              //Create a match between coach and candidate
-              if (newUser.role === "candidate") {
-                User.find(
-                  { role: "candidate", category: category },
-                  (err, candidate) => {
-                    if (err) return next(err);
-                    const matched = new matched({
-                      userCandidat: candidate._id,
-                      userCoach: coach._id
-                    });
-                    matched.save(err => {
-                      if (err) return next(err);
-                    });
-                  }
-                );
-              } else {
-                User.find(
-                  { role: "coach", category: category },
-                  (err, candidate) => {
-                    if (err) return next(err);
-                    const matched = new matched({
-                      userCandidat: candidate._id,
-                      userCoach: coach._id
-                    });
-                    matched.save(err => {
-                      if (err) return next(err);
-                    });
-                  }
-                );
-              }
               done(err, newUser);
             });
           });
@@ -175,7 +128,6 @@ passport.use(
   )
 );
 
-//LOGIN
 passport.use(
   "local-login",
   new LocalStrategy(
@@ -214,14 +166,14 @@ app.use("/", require("./routes/auth"));
 app.use("/user", require("./routes/user"));
 
 // catch 404 and forward to error handler
-app.use(function(req, res, next) {
+app.use((req, res, next) => {
   var err = new Error("Not Found");
   err.status = 404;
   next(err);
 });
 
 // error handler
-app.use(function(err, req, res, next) {
+app.use((err, req, res, next) => {
   // set locals, only providing error in development
   res.locals.message = err.message;
   res.locals.error = req.app.get("env") === "development" ? err : {};
@@ -232,3 +184,34 @@ app.use(function(err, req, res, next) {
 });
 
 module.exports = app;
+
+//Create a match between coach and candidate
+// if (newUser.role === "candidate") {
+//   User.find(
+//     { role: "candidate", category: category },
+//     (err, candidate) => {
+//       if (err) return next(err);
+//       const matched = new matched({
+//         userCandidat: candidate._id,
+//         userCoach: coach._id
+//       });
+//       matched.save(err => {
+//         if (err) return next(err);
+//       });
+//     }
+//   );
+// } else {
+//   User.find(
+//     { role: "coach", category: category },
+//     (err, candidate) => {
+//       if (err) return next(err);
+//       const matched = new matched({
+//         userCandidat: candidate._id,
+//         userCoach: coach._id
+//       });
+//       matched.save(err => {
+//         if (err) return next(err);
+//       });
+//     }
+//   );
+// }
