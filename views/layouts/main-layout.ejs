@@ -29,10 +29,10 @@
       <ul class="navbar-nav mr-auto">
         <% if(!user) { %>
           <li class="nav-item">
-            <a class="nav-link" href="/signup">Je suis coach</a>
+            <a class="nav-link" href="/signup">Coach</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/signup">Je suis candidat</a>
+            <a class="nav-link" href="/signup">Candidat</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="/login">Login</a>
@@ -50,10 +50,10 @@
               </li>
               <% } else if(user.role === "candidat"){ %>
                 <li class="nav-item">
-                  <a class="nav-link" href="/coach">Dashboard</a>
+                  <a class="nav-link" href="/candidat">Dashboard</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="/candidat">profile</a>
+                  <a class="nav-link" href="/candidat/<%= user.id %>">profile</a>
                 </li>
                 <li class="nav-item">
                   <a class="nav-link" href="/logout">Logout</a>

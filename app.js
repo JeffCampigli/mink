@@ -128,8 +128,8 @@ passport.use(
                     console.log(coach);
                     if (err) return next(err);
                     const matched = new Match({
-                      userCandidat: newUser,
-                      userCoach: coach.id
+                      userCandidat: newUser.id,
+                      userCoach: coach
                     });
                     matched.save(err => {
                       if (err) return next(err);

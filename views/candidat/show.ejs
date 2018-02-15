@@ -6,8 +6,8 @@
                     width="140" height="140" class="img-circle">
             </a>
             <h3>
-                <%= coach.firstname %>
-                    <%= coach.lastname %>
+                <%= candidat.firstname %>
+                    <%= candidat.lastname %>
             </h3>
             <em>click my face for more</em>
         </center>
@@ -19,7 +19,7 @@
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
                     <h4 class="modal-title" id="myModalLabel">More About
-                        <%= coach.username %>
+                        <%= candidat.username %>
                     </h4>
                 </div>
                 <div class="modal-body">
@@ -28,13 +28,13 @@
                             width="140" height="140" border="0" class="img-circle">
                         </a>
                         <h3 class="media-heading">
-                            <%= coach.firstname %>
-                                <%= coach.lastname %>
+                            <%= candidat.firstname %>
+                                <%= candidat.lastname %>
                         </h3>
                         <span>
-                            <strong>Compétence(s) : </strong>
+                            <strong>Compétence(s) recherchée(s): </strong>
                         </span>
-                        <% coach.category.forEach(skill => {  %>
+                        <% candidat.category.forEach(skill => {  %>
                             <span class="label label-warning">
                                 <%= skill %> / </span>
                             <% }) %>
@@ -44,7 +44,7 @@
                         <p class="text-left">
                             <strong>Bio: </strong>
                             <br>
-                            <%= coach.description %>
+                            <%= candidat.description %>
                         </p>
                         <br>
                     </center>
@@ -52,17 +52,17 @@
             </div>
         </div>
     </div>
-    <% if(user.role === "candidat") { %>
+    <% if(user.role === "coach") { %>
             <center>
-                <form action="/coach/<%= coach.id %>" method="POST">
-                    <button class="btn btn-default">Send a request to coach</button>
+                <form action="/candidat/<%= candidats.id %>" method="POST">
+                    <button class="btn btn-default">Envoyer une requête au candidat</button>
                 </form>
             </center>
     <% } %>
-    <% if(user.role === "coach") { %>
-    <h4>Liste des reqûetes candidat</h4>
-        <% candidats.forEach(candidate => { %>
-           <p><%= candidate.firstname %> <%= candidate.firstname %> - <%= candidate.firstname %> - status : <%= matched.status%></p>
+    <% if(user.role === "candidat") { %>
+    <h4>Liste des reqûetes coach</h4>
+        <% coach.forEach(coachh => { %>
+           <p><%= coachh.firstname %> <%= coachh.firstname %> - <%= coachh.firstname %> - status : <%= matched.status%></p>
         <% }) %>
 
     <% } %>
