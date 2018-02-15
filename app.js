@@ -168,6 +168,7 @@ passport.use(
       usernameField: "email"
     },
     (email, password, done) => {
+      console.log(email);
       User.findOne({ email }, (err, user) => {
         if (err) return done(err);
         if (!user) {

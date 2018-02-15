@@ -9,25 +9,21 @@ router.get("/signup", ensureLoggedOut(), (req, res, next) => {
   });
 });
 
-router.get("/login", ensureLoggedOut(), (req, res, next) => {
-  res.render("auth/login", {
-    title: "Page de connexion"
-  });
-});
-
 router.post(
   "/signup",
   ensureLoggedOut(),
-  (req, res, next) => {
-    console.log("before passport");
-    next();
-  },
   passport.authenticate("local-signup", {
     successRedirect: "/",
     failureRedirect: "/signup",
     failureFlash: true
   })
 );
+
+router.get("/login", ensureLoggedOut(), (req, res, next) => {
+  res.render("auth/login", {
+    title: "Page de connexion"
+  });
+});
 
 router.post(
   "/login",

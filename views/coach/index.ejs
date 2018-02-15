@@ -8,7 +8,7 @@
         <div class="card-body">
           <h5 class="card-title"><%= candidate.username %></h5>
           <p class="card-text"><%= candidate.description %></p>
-          <a href="#" class="btn btn-primary">Go somewhere</a>
+          <a href="/candidate/<%= candidate.id %>" class="btn btn-primary">voir profile candidat</a>
         </div>
       </div>
       <% }) %>

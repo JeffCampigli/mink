@@ -6,27 +6,33 @@ const { ensureLoggedIn } = require("connect-ensure-login");
 
 const SKILLS = require("../config/user-skills");
 
-router.get("/coach", ensureLoggedIn(), function(req, res, next) {
-  //console.log(req.user.id);
+router.get("/coach", ensureLoggedIn(), (req, res, next) => {
   Match.find({ userCoach: req.user.id }, (err, matched) => {
     if (err) return next(err);
-    //console.log(matched[0].userCandidat);
-    //res.render("coach/index", { toto: matched[0].userCandidat });
-
-    //console.log(matched[0].userCandidat);
+    console.log(matched);
     let candidatId = matched[0].userCandidat;
-
     User.find({ _id: candidatId }, (err, candidatMatched) => {
       if (err) return next(err);
-      console.log(candidatMatched[0]);
       res.render("coach/index", { match: candidatMatched });
     });
   });
 });
 
-router.get("/candidat/:id", ensureLoggedIn(), function(req, res, next) {
-  //coach[skill] matche candidat[skill]
-  //lister coach matché
+router.get("/coach/:id", ensureLoggedIn(), (req, res, next) => {
+  const user = req.user;
+  res.render("coach/show", { user: user });
+});
+
+router.get("/candidat", ensureLoggedIn(), (req, res, next) => {
+  Match.find({ userCandidat: req.user.id }, (err, matched) => {
+    if (err) return next(err);
+    console.log(matched);
+    let coachId = matched[0].userCoach;
+    User.find({ _id: coachId }, (err, coachMatched) => {
+      if (err) return next(err);
+      res.render("coach/index", { match: coachMatched });
+    });
+  });
 });
 
 module.exports = router;
