@@ -43,3 +43,6 @@ a {
 .container marketing {
   background-color: chartreuse !important;
 }
+footer {
+  bottom: 0;
+}
