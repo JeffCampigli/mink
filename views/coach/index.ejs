@@ -1,0 +1,16 @@
+<div class="container">
+  <h1>Candidats matchés</h1>
+  <div class="row boxCandidat">
+  
+    <% match.forEach(candidate => { %>
+      <div class="card" style="width: 18rem;">
+        <img class="card-img-top" src="http://vectorpage.com/uploads/2015/09/Teamwork-Backgrounds-Set.png" alt="Card image cap">
+        <div class="card-body">
+          <h5 class="card-title"><%= candidate.username %></h5>
+          <p class="card-text"><%= candidate.description %></p>
+          <a href="#" class="btn btn-primary">Go somewhere</a>
+        </div>
+      </div>
+      <% }) %>
+</div>
+</div>
