@@ -4,7 +4,7 @@ const Match = require("../models/match");
 const { ensureLoggedIn } = require("connect-ensure-login");
 
 const User = require("../models/user");
-const Match = require("../models/match");
+
 const SKILLS = require("../config/user-skills");
 
 router.get("/coach", ensureLoggedIn(), function(req, res, next) {
