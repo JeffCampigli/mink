@@ -15,7 +15,8 @@ const Match = require("./models/match");
 const bcrypt = require("bcrypt");
 const flash = require("connect-flash");
 
-mongoose.connect("mongodb://localhost/mink-db");
+// mongoose.connect("mongodb://localhost/mink-db");
+mongoose.connect(process.env.MONGODB_URI);
 
 const app = express();
 
