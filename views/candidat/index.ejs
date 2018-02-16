@@ -1,18 +1,22 @@
 <% if (user.role === "candidat") { %>
-<div class="container" style="text-align: center">
-<h1>Ils peuvent m'aider : </h1>
-<div class="row boxCandidat" style="text-align: center">
+  <div class="container" style="text-align: center">
+    <h1>Ils peuvent m'aider : </h1>
+    <div class="row boxCandidat" style="text-align: center">
 
-  <% match.forEach(coach => { %>
-    <div class="card" style="width: 18rem;">
-      <img class="card-img-top" src="<%= coach.picPath %>" alt="Card image cap">
-      <div class="card-body">
-        <h5 class="card-title"><%= coach.username %></h5>
-        <p class="card-text"><%= coach.description %></p>
-        <a href="/coach/<%= coach.id %>" class="btn btn-primary">voir le profil de ce coach</a>
-      </div>
+      <% match.forEach(coach => { %>
+        <div class="card" style="width: 18rem;">
+          <img class="card-img-top" src="<%= coach.picPath %>" alt="Card image cap">
+          <div class="card-body">
+            <h5 class="card-title">
+              <%= coach.username %>
+            </h5>
+            <p class="card-text">
+              <%= coach.description %>
+            </p>
+            <a href="/coach/<%= coach.id %>" class="btn btn-primary">voir le profil de ce coach</a>
+          </div>
+        </div>
+        <% }) %>
     </div>
-    <% }) %>
-</div>
-</div>
-<% } %>
+  </div>
+  <% } %>
