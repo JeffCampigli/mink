@@ -80,6 +80,7 @@ passport.use(
           role,
           description
         } = req.body;
+        const { file } = req;
         bcrypt.genSalt(14, (err, salt) => {
           if (err) return done(err);
           bcrypt.hash(password, salt, (err, hashedPass) => {
@@ -101,7 +102,9 @@ passport.use(
               age,
               category,
               role,
-              description
+              description,
+              picPath: `/uploads/profile-pictures/${file.filename}`,
+              picName: file.originalname
             });
             //console.log(newUser);
 

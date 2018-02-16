@@ -2,16 +2,22 @@ const express = require("express");
 const router = express.Router();
 const passport = require("passport");
 const { ensureLoggedIn, ensureLoggedOut } = require("connect-ensure-login");
+const multer = require("multer");
+const upload = multer({ dest: "public/uploads/profile-pictures" });
 
-router.get("/signup", ensureLoggedOut(), (req, res, next) => {
-  res.render("auth/signup", {
-    title: "Création de compte"
-  });
-});
+router.get(
+  "/signup",
+  [ensureLoggedOut(), upload.single("profile-picture")],
+  (req, res, next) => {
+    res.render("auth/signup", {
+      title: "Création de compte"
+    });
+  }
+);
 
 router.post(
   "/signup",
-  ensureLoggedOut(),
+  [ensureLoggedOut(), upload.single("profile-picture")],
   passport.authenticate("local-signup", {
     successRedirect: "/",
     failureRedirect: "/signup",

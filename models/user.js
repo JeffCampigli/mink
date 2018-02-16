@@ -57,7 +57,9 @@ const userSchema = new Schema({
     enum: ["coach", "candidat"],
     type: String
   },
-  description: String
+  description: String,
+  picPath: String,
+  picName: String
 });
 
 module.exports = mongoose.model("User", userSchema);
